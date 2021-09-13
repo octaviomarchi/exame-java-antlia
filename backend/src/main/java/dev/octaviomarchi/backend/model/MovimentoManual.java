@@ -26,7 +26,7 @@ public class MovimentoManual {
 
     @Id
     @Column(name = "NUM_LANCAMENTO")
-     private Long numLancamento;
+    private Long numLancamento;
 
     @Column(name = "DES_DESCRICAO")
     private String desDescricao;

@@ -1,9 +1,9 @@
 package dev.octaviomarchi.backend.service;
 
-import dev.octaviomarchi.backend.dtos.MovimentoDTO;
-import dev.octaviomarchi.backend.dtos.MovimentoRespostaDTO;
+import dev.octaviomarchi.backend.dtos.MovimentoManualRequestDTO;
+import dev.octaviomarchi.backend.dtos.MovimentoManualResponseDTO;
 
 public interface MovimentoManualService {
 
-    MovimentoRespostaDTO salvarMovimentoManual(MovimentoDTO movimentoDTO);
+    MovimentoManualResponseDTO salvarMovimentoManual(MovimentoManualRequestDTO movimentoManualRequestDTO);
 }

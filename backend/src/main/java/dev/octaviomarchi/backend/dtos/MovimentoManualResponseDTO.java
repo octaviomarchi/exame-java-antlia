@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public class MovimentoRespostaDTO {
+public class MovimentoManualResponseDTO {
     private Long mes;
     private Long ano;
     private String codigoProduto;
@@ -13,7 +13,7 @@ public class MovimentoRespostaDTO {
     private String descricao;
     private Double valor;
 
-    public MovimentoRespostaDTO(Long mes, Long ano, String codigoProduto, String descricaoProduto, Long lancamento, String descricao, Double valor) {
+    public MovimentoManualResponseDTO(Long mes, Long ano, String codigoProduto, String descricaoProduto, Long lancamento, String descricao, Double valor) {
         this.mes = mes;
         this.ano = ano;
         this.codigoProduto = codigoProduto;
@@ -23,7 +23,7 @@ public class MovimentoRespostaDTO {
         this.valor = valor;
     }
 
-    public MovimentoRespostaDTO() {
+    public MovimentoManualResponseDTO() {
     }
 
     public Long getMes() {
