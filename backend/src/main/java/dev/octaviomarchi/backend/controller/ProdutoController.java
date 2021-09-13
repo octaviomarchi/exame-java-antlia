@@ -4,6 +4,7 @@ import dev.octaviomarchi.backend.dtos.ProductDTO;
 import dev.octaviomarchi.backend.dtos.ProdutoCosifDTO;
 import dev.octaviomarchi.backend.service.ProdutoCosifService;
 import dev.octaviomarchi.backend.service.impl.ProdutoServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@Log4j2
 public class ProdutoController {
 
     @Autowired
@@ -21,8 +23,10 @@ public class ProdutoController {
     ProdutoCosifService produtoCosifService;
 
     @GetMapping()
+    @CrossOrigin(origins = "http://localhost:4200")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> getProducts() {
+        log.info("getProducts");
         List<ProductDTO> products = productServiceImpl.getProductsForDropdown();
         return products;
     }
