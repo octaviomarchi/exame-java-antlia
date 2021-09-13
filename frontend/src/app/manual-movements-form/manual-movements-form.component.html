@@ -20,7 +20,11 @@
 
       <div class="form-group col">
         <label for="produto">Produto:</label>
-        <input formControlName="produto" id="produto" class="form-control">
+<!--        <input formControlName="produto" id="produto" class="form-control">-->
+        <select id="produto" formControlName="produto">
+          <option value=""></option>
+          <option *ngFor="let product of products" [ngValue]="product">{{product.descricao}}</option>
+        </select>
       </div>
 
 

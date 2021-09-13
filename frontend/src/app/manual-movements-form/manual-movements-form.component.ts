@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Product} from "../models/product";
 
 @Component({
   selector: 'app-manual-movements-form',
@@ -7,6 +8,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./manual-movements-form.component.css']
 })
 export class ManualMovementsFormComponent implements OnInit {
+
+  @Input()
+  products: Product[];
 
   addProductForm: FormGroup;
   isFormDisabled = true;
