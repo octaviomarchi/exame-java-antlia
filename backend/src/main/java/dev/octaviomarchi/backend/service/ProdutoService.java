@@ -4,7 +4,7 @@ import dev.octaviomarchi.backend.dtos.ProductDTO;
 
 import java.util.List;
 
-public interface ProductService {
+public interface ProdutoService {
 
     List<ProductDTO> getProductsForDropdown();
 }

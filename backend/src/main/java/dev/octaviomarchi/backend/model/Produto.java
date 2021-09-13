@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Table(name = "PRODUTO")
 @Entity
-public class Product {
+public class Produto {
 
     @Id
     @Column(name = "COD_PRODUTO", nullable = false, length = 4, columnDefinition = "char(4)")
@@ -34,7 +34,7 @@ public class Product {
     private List<MovimentoManual> movimentoManualList;
 
 
-    public Product(String codProduto, @Nullable String desProduto, @Nullable String staStatus) {
+    public Produto(String codProduto, @Nullable String desProduto, @Nullable String staStatus) {
         this.codProduto = codProduto;
         this.desProduto = desProduto;
         this.staStatus = staStatus;
