@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProductDTO {
+public class ProdutoDTO {
 
     private String codigo;
     private String descricao;
 
-    public ProductDTO(Produto produto) {
+    public ProdutoDTO(Produto produto) {
         this.codigo = produto.getCodProduto();
         this.descricao = produto.getDesProduto();
     }

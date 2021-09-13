@@ -44,9 +44,4 @@ public class Produto {
         this.desProduto = desProduto;
         this.staStatus = staStatus;
     }
-
-    private void addProdutoCosif(ProdutoCosif produtoCosif) {
-        this.produtoCosifList.add(produtoCosif);
-        produtoCosif.setProduto(this);
-    }
 }

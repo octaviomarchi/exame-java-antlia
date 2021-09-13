@@ -1,6 +1,7 @@
 package dev.octaviomarchi.backend.service.impl;
 
-import dev.octaviomarchi.backend.dtos.ProductDTO;
+import dev.octaviomarchi.backend.converter.ProdutoConverter;
+import dev.octaviomarchi.backend.dtos.ProdutoDTO;
 import dev.octaviomarchi.backend.model.Produto;
 import dev.octaviomarchi.backend.repository.ProdutoRepository;
 import dev.octaviomarchi.backend.service.ProdutoService;
@@ -16,9 +17,12 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
-    public List<ProductDTO> getProductsForDropdown() {
+    @Autowired
+    ProdutoConverter produtoConverter;
+
+    public List<ProdutoDTO> getProdutosParaDropdown() {
         List<Produto> produtos = produtoRepository.findAll();
-        List<ProductDTO> productDTOS = produtos.stream().map(ProductDTO::new).collect(Collectors.toList());
-        return productDTOS;
+        List<ProdutoDTO> produtoDTOS = this.produtoConverter.convertEntityListToProdutoDTOList(produtos);
+        return produtoDTOS;
     }
 }
