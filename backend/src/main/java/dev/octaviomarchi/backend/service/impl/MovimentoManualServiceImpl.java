@@ -1,10 +1,9 @@
 package dev.octaviomarchi.backend.service.impl;
 
-import dev.octaviomarchi.backend.converter.MovimentoConverter;
-import dev.octaviomarchi.backend.dtos.MovimentoDTO;
-import dev.octaviomarchi.backend.dtos.MovimentoRespostaDTO;
+import dev.octaviomarchi.backend.converter.MovimentoManualConverter;
+import dev.octaviomarchi.backend.dtos.MovimentoManualRequestDTO;
+import dev.octaviomarchi.backend.dtos.MovimentoManualResponseDTO;
 import dev.octaviomarchi.backend.model.MovimentoManual;
-import dev.octaviomarchi.backend.model.MovimentoManualId;
 import dev.octaviomarchi.backend.model.ProdutoCosif;
 import dev.octaviomarchi.backend.repository.MovimentoManualRepository;
 import dev.octaviomarchi.backend.service.MovimentoManualService;
@@ -20,32 +19,24 @@ public class MovimentoManualServiceImpl implements MovimentoManualService {
     MovimentoManualRepository movimentoManualRepository;
 
     @Autowired
-    MovimentoConverter movimentoConverter;
+    MovimentoManualConverter movimentoManualConverter;
 
     @Override
-    public MovimentoRespostaDTO salvarMovimentoManual(MovimentoDTO movimentoDTO) {
-        MovimentoManual movimentoManual = new MovimentoManual(
-                Long.valueOf(movimentoDTO.getMes()),
-                Long.valueOf(movimentoDTO.getAno()),
-                movimentoDTO.getDescricao(),
-                movimentoDTO.getValor(),
-                new ProdutoCosif(movimentoDTO.getCosif())
-        );
+    public MovimentoManualResponseDTO salvarMovimentoManual(MovimentoManualRequestDTO movimentoManualRequestDTO) {
+        // converter aqui
+        MovimentoManual movimentoManual = movimentoManualConverter.movimentoManualRequestDTOToEntity(movimentoManualRequestDTO);
 
-        int numeroMovimento = movimentoManualRepository.getNumeroLancamentos(
+        Long numeroLancamentosMes = movimentoManualRepository.getNumeroLancamentosMes(
                 movimentoManual.getDatMes(),
                 movimentoManual.getDatAno()
         );
 
-        log.info("Numero de Lancamentos: " + numeroMovimento);
-
-        movimentoManual.setNumLancamento((long) (numeroMovimento + 1));
+        movimentoManual.setNumLancamento(numeroLancamentosMes + 1);
 
         MovimentoManual movimentoManualSaved = movimentoManualRepository.save(movimentoManual);
 
-        MovimentoRespostaDTO movimentoRespostaDTO = movimentoConverter.movimentoManualToMovimentoRespostaDTO(movimentoManualSaved);
+        MovimentoManualResponseDTO movimentoManualResponseDTO = movimentoManualConverter.movimentoManualToMovimentoRespostaDTO(movimentoManualSaved);
 
-        return movimentoRespostaDTO;
-
+        return movimentoManualResponseDTO;
     }
 }
