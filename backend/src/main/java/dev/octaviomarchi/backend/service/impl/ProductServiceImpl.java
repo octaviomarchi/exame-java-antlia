@@ -1,8 +1,9 @@
-package dev.octaviomarchi.backend.services;
+package dev.octaviomarchi.backend.service.impl;
 
 import dev.octaviomarchi.backend.dtos.ProductDTO;
-import dev.octaviomarchi.backend.models.Product;
-import dev.octaviomarchi.backend.repositories.ProductRepository;
+import dev.octaviomarchi.backend.model.Product;
+import dev.octaviomarchi.backend.repository.ProductRepository;
+import dev.octaviomarchi.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;

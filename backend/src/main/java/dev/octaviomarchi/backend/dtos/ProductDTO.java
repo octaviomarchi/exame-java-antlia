@@ -1,10 +1,12 @@
 package dev.octaviomarchi.backend.dtos;
 
-import dev.octaviomarchi.backend.models.Product;
+import dev.octaviomarchi.backend.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ProductDTO {
 

@@ -1,19 +1,16 @@
-package dev.octaviomarchi.backend.models;
+package dev.octaviomarchi.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "PRODUTO")
 @Entity
 public class Product {
@@ -29,4 +26,17 @@ public class Product {
     @Column(name = "STA_STATUS", length = 1, columnDefinition = "char(1)")
     @Nullable
     private String staStatus;
+
+    @OneToMany()
+    private List<ProdutoCosif> produtoCosifList;
+
+    @OneToMany()
+    private List<MovimentoManual> movimentoManualList;
+
+
+    public Product(String codProduto, @Nullable String desProduto, @Nullable String staStatus) {
+        this.codProduto = codProduto;
+        this.desProduto = desProduto;
+        this.staStatus = staStatus;
+    }
 }
