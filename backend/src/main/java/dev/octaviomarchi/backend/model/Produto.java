@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -27,16 +28,25 @@ public class Produto {
     @Nullable
     private String staStatus;
 
-    @OneToMany()
-    private List<ProdutoCosif> produtoCosifList;
+    @OneToMany(
+            mappedBy = "produto",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ProdutoCosif> produtoCosifList = new ArrayList<>();
 
-    @OneToMany()
-    private List<MovimentoManual> movimentoManualList;
-
+    public Produto(String codProduto) {
+        this.codProduto = codProduto;
+    }
 
     public Produto(String codProduto, @Nullable String desProduto, @Nullable String staStatus) {
         this.codProduto = codProduto;
         this.desProduto = desProduto;
         this.staStatus = staStatus;
+    }
+
+    private void addProdutoCosif(ProdutoCosif produtoCosif) {
+        this.produtoCosifList.add(produtoCosif);
+        produtoCosif.setProduto(this);
     }
 }
