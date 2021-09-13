@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Product} from "../models/product";
+import {ProdutoCosif} from "../models/produto-cosif";
 
 @Component({
   selector: 'app-manual-movements-form',
@@ -11,6 +12,12 @@ export class ManualMovementsFormComponent implements OnInit {
 
   @Input()
   products: Product[];
+
+  @Input()
+  codigoCosifArray: ProdutoCosif[] = new Array<ProdutoCosif>();
+
+  @Output()
+  codigoProduto: EventEmitter<string> = new EventEmitter<string>();
 
   addProductForm: FormGroup;
   isFormDisabled = true;
@@ -36,5 +43,9 @@ export class ManualMovementsFormComponent implements OnInit {
 
   onNew(): void {
     this.isFormDisabled = false;
+  }
+
+  OnProdutoSelect(): void {
+    this.codigoProduto.emit(this.addProductForm.get('produto').value);
   }
 }

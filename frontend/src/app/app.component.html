@@ -1,3 +1,7 @@
 <div class="container">
-  <app-manual-movements-form [products]="products"></app-manual-movements-form>
+  <app-manual-movements-form
+    [products]="products"
+    (codigoProduto)="getProdutoCosif($event)"
+    [codigoCosifArray]="produtoCosifArray"
+  ></app-manual-movements-form>
 </div>
