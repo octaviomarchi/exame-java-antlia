@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,6 +27,9 @@ public class ProdutoCosif {
     @JoinColumn(name = "COD_PRODUTO", nullable = false)
     private Produto produto;
 
+    @OneToMany(mappedBy = "produtoCosif")
+    private List<MovimentoManual> movimentoManual = new ArrayList<MovimentoManual>();
+
     public ProdutoCosif(String codCosif) {
         this.codCosif = codCosif;
     }
@@ -37,5 +41,12 @@ public class ProdutoCosif {
         this.codCosif = codCosif;
         this.codClassificacao = codClassificacao;
         this.staStatus = staStatus;
+    }
+
+    public ProdutoCosif(String codCosif, String codClassificacao, String staStatus, Produto produto) {
+        this.codCosif = codCosif;
+        this.codClassificacao = codClassificacao;
+        this.staStatus = staStatus;
+        this.produto = produto;
     }
 }
