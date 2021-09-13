@@ -8,10 +8,12 @@ import dev.octaviomarchi.backend.model.MovimentoManualId;
 import dev.octaviomarchi.backend.model.ProdutoCosif;
 import dev.octaviomarchi.backend.repository.MovimentoManualRepository;
 import dev.octaviomarchi.backend.service.MovimentoManualService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class MovimentoManualServiceImpl implements MovimentoManualService {
 
     @Autowired
@@ -30,9 +32,20 @@ public class MovimentoManualServiceImpl implements MovimentoManualService {
                 new ProdutoCosif(movimentoDTO.getCosif())
         );
 
+        int numeroMovimento = movimentoManualRepository.getNumeroLancamentos(
+                movimentoManual.getDatMes(),
+                movimentoManual.getDatAno()
+        );
+
+        log.info("Numero de Lancamentos: " + numeroMovimento);
+
+        movimentoManual.setNumLancamento((long) (numeroMovimento + 1));
+
         MovimentoManual movimentoManualSaved = movimentoManualRepository.save(movimentoManual);
 
-        return movimentoConverter.movimentoManualToMovimentoRespostaDTO(movimentoManualSaved);
+        MovimentoRespostaDTO movimentoRespostaDTO = movimentoConverter.movimentoManualToMovimentoRespostaDTO(movimentoManualSaved);
+
+        return movimentoRespostaDTO;
 
     }
 }
