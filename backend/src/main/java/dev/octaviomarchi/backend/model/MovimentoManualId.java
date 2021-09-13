@@ -15,4 +15,6 @@ public class MovimentoManualId implements Serializable {
     private Long datMes;
 
     private Long datAno;
+
+    private Long numLancamento;
 }

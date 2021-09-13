@@ -24,8 +24,9 @@ public class MovimentoManual {
     @Column(name = "DAT_ANO")
     private Long datAno;
 
-    // retirado por conta da segunda forma normal
-    // private Long numLancamento;
+    @Id
+    @Column(name = "NUM_LANCAMENTO")
+     private Long numLancamento;
 
     @Column(name = "DES_DESCRICAO")
     private String desDescricao;

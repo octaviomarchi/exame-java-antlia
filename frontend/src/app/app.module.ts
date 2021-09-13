@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ManualMovementsFormComponent } from './manual-movements-form/manual-movements-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { ManualMovementsGridComponent } from './manual-movements-grid/manual-movements-grid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManualMovementsFormComponent
+    ManualMovementsFormComponent,
+    ManualMovementsGridComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Product} from "../models/product";
 import {ProdutoCosif} from "../models/produto-cosif";
+import {MovimentoManualRequest} from "../models/movimento-manual-request";
 
 @Component({
   selector: 'app-manual-movements-form',
@@ -18,6 +19,9 @@ export class ManualMovementsFormComponent implements OnInit {
 
   @Output()
   codigoProduto: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  submit: EventEmitter<MovimentoManualRequest> = new EventEmitter<MovimentoManualRequest>();
 
   addProductForm: FormGroup;
   isFormDisabled = true;
@@ -47,5 +51,12 @@ export class ManualMovementsFormComponent implements OnInit {
 
   OnProdutoSelect(): void {
     this.codigoProduto.emit(this.addProductForm.get('produto').value);
+  }
+
+  onSubmit():void {
+    let movimentoManualRequest: MovimentoManualRequest = this.addProductForm.value;
+    this.submit.emit(movimentoManualRequest);
+    this.onReset()
+    this.isFormDisabled = true;
   }
 }

@@ -25,9 +25,12 @@ class LoadDatabase {
             produtoA = produtoRepository.save(produtoA);
             log.info("Preloading " + produtoB);
             produtoB = produtoRepository.save(produtoB);
-            ProdutoCosif produtoCosifA = new ProdutoCosif("0101", "TOP", "A", produtoA);
+            ProdutoCosif produtoCosifA = new ProdutoCosif("AA01", "PCA", "A", produtoA);
             log.info("Preloading: " + produtoCosifA);
             produtoCosifRepository.save(produtoCosifA);
+            ProdutoCosif produtoCosifB = new ProdutoCosif("AA02", "PCB", "A", produtoA);
+            log.info("Preloading: " + produtoCosifB);
+            produtoCosifRepository.save(produtoCosifB);
         };
     }
 }
