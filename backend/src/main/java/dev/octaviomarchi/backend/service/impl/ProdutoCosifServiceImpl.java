@@ -1,5 +1,6 @@
 package dev.octaviomarchi.backend.service.impl;
 
+import dev.octaviomarchi.backend.converter.ProdutoCosifConverter;
 import dev.octaviomarchi.backend.dtos.ProdutoCosifDTO;
 import dev.octaviomarchi.backend.model.Produto;
 import dev.octaviomarchi.backend.model.ProdutoCosif;
@@ -17,11 +18,14 @@ public class ProdutoCosifServiceImpl implements ProdutoCosifService {
     @Autowired
     ProdutoRepository produtoRepository;
 
+    @Autowired
+    ProdutoCosifConverter produtoCosifConverter;
+
     @Override
-    public List<ProdutoCosifDTO> getAllFromCodigoProduto(String codigoProduto) {
+    public List<ProdutoCosifDTO> getProdutoCosifListDoProduto(String codigoProduto) {
         Produto produto = produtoRepository.getById(codigoProduto);
         List<ProdutoCosif> produtoCosifList = produto.getProdutoCosifList();
-        List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifList.stream().map(ProdutoCosifDTO::new).collect(Collectors.toList());
+        List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifConverter.convertEntityListToProdutoCosifDTOList(produtoCosifList);
         return produtoCosifDTOList;
     }
 }

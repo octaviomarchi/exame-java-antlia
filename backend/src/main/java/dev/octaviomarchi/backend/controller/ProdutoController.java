@@ -29,9 +29,9 @@ public class ProdutoController {
         return ResponseEntity.ok().body(produtos);
     }
 
-    @GetMapping("/{codigo}/cosif")
-    public List<ProdutoCosifDTO> getProdutoCosifPorCodigoDoProduto(@PathVariable String codigo) {
-        List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifService.getAllFromCodigoProduto(codigo);
+    @GetMapping("/{codigoProduto}/cosif")
+    public List<ProdutoCosifDTO> getProdutoCosifListPorCodigoDoProduto(@PathVariable String codigoProduto) {
+        List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifService.getProdutoCosifListDoProduto(codigoProduto);
         return produtoCosifDTOList;
     }
 }

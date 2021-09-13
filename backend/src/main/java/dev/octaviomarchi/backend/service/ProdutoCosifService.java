@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProdutoCosifService {
 
-    List<ProdutoCosifDTO> getAllFromCodigoProduto(String codigoProduto);
+    List<ProdutoCosifDTO> getProdutoCosifListDoProduto(String codigoProduto);
 }

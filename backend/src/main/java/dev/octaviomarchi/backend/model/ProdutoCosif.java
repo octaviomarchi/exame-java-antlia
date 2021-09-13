@@ -2,12 +2,14 @@ package dev.octaviomarchi.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name = "PRODUTO_COSIF")
 @Entity
@@ -32,9 +34,6 @@ public class ProdutoCosif {
 
     public ProdutoCosif(String codCosif) {
         this.codCosif = codCosif;
-    }
-
-    public ProdutoCosif() {
     }
 
     public ProdutoCosif(String codCosif, String codClassificacao, String staStatus) {
