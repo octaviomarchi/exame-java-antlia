@@ -20,17 +20,24 @@
 
       <div class="form-group col">
         <label for="produto">Produto:</label>
-<!--        <input formControlName="produto" id="produto" class="form-control">-->
-        <select id="produto" formControlName="produto">
+        <select id="produto" formControlName="produto" (change)="OnProdutoSelect()">
           <option value=""></option>
-          <option *ngFor="let product of products" [ngValue]="product">{{product.descricao}}</option>
+          <option *ngFor="let product of products" [ngValue]="product.codigo">{{product.descricao}}</option>
         </select>
       </div>
 
 
       <div class="form-group col">
         <label for="cosif">Cosif:</label>
-        <input formControlName="cosif" id="cosif" class="form-control">
+        <select id="cosif" formControlName="cosif" >
+          <option value=""></option>
+          <option
+            *ngFor="let codigoCosif of codigoCosifArray"
+            [ngValue]="codigoCosif.codigoCosif"
+          >
+            {{codigoCosif.codigoCosif}} - ({{codigoCosif.classificacao}})
+          </option>
+        </select>
       </div>
 
       <div class="form-group col">
