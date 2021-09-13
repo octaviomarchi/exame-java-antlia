@@ -4,6 +4,8 @@ import {environment} from "../environments/environment";
 import {Observable} from "rxjs";
 import {Product} from "./models/product";
 import {ProdutoCosif} from "./models/produto-cosif";
+import {MovimentoManualRequest} from "./models/movimento-manual-request";
+import {MovimentoManual} from "./models/movimento-manual";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,9 @@ export class SpringApiService {
 
   getProdutoCosif(codigoProduto: string): Observable<ProdutoCosif[]> {
     return this.http.get<ProdutoCosif[]>(this.apiEndpoint + /products/ + codigoProduto + '/cosif');
+  }
+
+  postMovimentoManual(movimentoManualRequest: MovimentoManualRequest): Observable<MovimentoManual> {
+    return this.http.post<MovimentoManual>(this.apiEndpoint + '/movements', movimentoManualRequest);
   }
 }
