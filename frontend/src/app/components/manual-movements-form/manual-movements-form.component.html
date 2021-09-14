@@ -1,0 +1,89 @@
+<h2>Movimentos manuais</h2>
+<form [formGroup]="addProductForm">
+  <fieldset [disabled]="isFormDisabled">
+    <div class="row row-cols-2">
+
+      <div class="form-group col">
+        <label for="mes">Mês:</label>
+        <input formControlName="mes" id="mes" class="form-control">
+        <span *ngIf="addProductForm.get('mes').invalid && (addProductForm.get('mes').dirty || addProductForm.get('mes').touched)" class="alert">
+          <div *ngIf="addProductForm.get('mes').errors?.required" class="error">
+            Mes é obrigatorio.
+          </div>
+          <div *ngIf="addProductForm.get('mes').errors?.min || addProductForm.get('mes').errors?.max" class="error">
+            Mes precisa ser entre 1 e 12.
+          </div>
+          <div *ngIf="addProductForm.get('mes').errors?.pattern" class="error">
+            Mes é numérico.
+          </div>
+        </span>
+      </div>
+
+      <div class="form-group col">
+        <label for="ano">Ano:</label>
+        <input formControlName="ano" id="ano" class="form-control">
+        <span *ngIf="addProductForm.get('ano').invalid && (addProductForm.get('ano').dirty || addProductForm.get('ano').touched)" class="alert">
+          <div *ngIf="addProductForm.get('ano').errors?.pattern" class="error">
+            Ano é numérico de 1 a 4 digitos.
+          </div>
+        </span>
+      </div>
+
+      <div class="form-group col">
+        <label for="produto">Produto:</label>
+        <select id="produto" formControlName="produto" class="form-select" (change)="OnProdutoSelect()">
+          <option value="" disabled>-- Selecione --</option>
+          <option *ngFor="let product of products" [ngValue]="product.codigo">{{product.descricao}}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group col">
+        <label for="cosif">Cosif:</label>
+        <select id="cosif" formControlName="cosif" class="form-select">
+          <option value="" disabled>-- Selecione --</option>
+          <option
+            *ngFor="let codigoCosif of codigoCosifArray"
+            [ngValue]="codigoCosif.codigoCosif"
+          >
+            {{codigoCosif.codigoCosif}} - ({{codigoCosif.classificacao}})
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col">
+        <label for="valor">Valor:</label>
+        <input formControlName="valor" id="valor" class="form-control" placeholder="(.) como separador">
+        <span *ngIf="addProductForm.get('valor').invalid && (addProductForm.get('valor').dirty || addProductForm.get('valor').touched)" class="alert">
+          <div *ngIf="addProductForm.get('valor').errors?.required" class="error">
+            Valor é obrigatório.
+          </div>
+          <div *ngIf="addProductForm.get('valor').errors?.pattern" class="error">
+            Valor é numérico (com até 2 digitos decimais).
+          </div>
+        </span>
+      </div>
+
+      <div class="col"></div>
+
+      <div class="form-group col">
+        <label for="descricao">Descrição:</label>
+        <textarea class="form-control" formControlName="descricao" id="descricao" type="text"></textarea>
+        <span *ngIf="addProductForm.get('descricao').invalid && (addProductForm.get('descricao').dirty || addProductForm.get('descricao').touched)" class="alert">
+          <div *ngIf="addProductForm.get('descricao').errors?.required" class="error">
+            Descrição é obrigatório.
+          </div>
+        </span>
+      </div>
+
+    </div>
+  </fieldset>
+
+  <div class="col-6">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+      <button type="button" class="btn btn-primary me-md-1" (click)="onReset()">Limpar</button>
+      <button type="button" class="btn btn-primary me-md-1" (click)="onNew()">Novo</button>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="addProductForm.invalid">Incluir</button>
+    </div>
+  </div>
+</form>

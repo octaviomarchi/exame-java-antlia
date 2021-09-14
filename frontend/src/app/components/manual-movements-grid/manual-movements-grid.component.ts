@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MovimentoManual} from "../models/movimento-manual";
+import {MovimentoManual} from "../../models/movimento-manual";
 
 @Component({
   selector: 'app-manual-movements-grid',
