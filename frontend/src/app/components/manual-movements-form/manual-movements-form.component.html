@@ -6,7 +6,9 @@
       <div class="form-group col">
         <label for="mes">Mês:</label>
         <input formControlName="mes" id="mes" class="form-control">
-        <span *ngIf="addProductForm.get('mes').invalid && (addProductForm.get('mes').dirty || addProductForm.get('mes').touched)" class="alert">
+        <span
+          *ngIf="addProductForm.get('mes').invalid && (addProductForm.get('mes').dirty || addProductForm.get('mes').touched)"
+          class="alert">
           <div *ngIf="addProductForm.get('mes').errors?.required" class="error">
             Mes é obrigatorio.
           </div>
@@ -22,7 +24,9 @@
       <div class="form-group col">
         <label for="ano">Ano:</label>
         <input formControlName="ano" id="ano" class="form-control">
-        <span *ngIf="addProductForm.get('ano').invalid && (addProductForm.get('ano').dirty || addProductForm.get('ano').touched)" class="alert">
+        <span
+          *ngIf="addProductForm.get('ano').invalid && (addProductForm.get('ano').dirty || addProductForm.get('ano').touched)"
+          class="alert">
           <div *ngIf="addProductForm.get('ano').errors?.pattern" class="error">
             Ano é numérico de 1 a 4 digitos.
           </div>
@@ -54,7 +58,9 @@
       <div class="form-group col">
         <label for="valor">Valor:</label>
         <input formControlName="valor" id="valor" class="form-control" placeholder="(.) como separador">
-        <span *ngIf="addProductForm.get('valor').invalid && (addProductForm.get('valor').dirty || addProductForm.get('valor').touched)" class="alert">
+        <span
+          *ngIf="addProductForm.get('valor').invalid && (addProductForm.get('valor').dirty || addProductForm.get('valor').touched)"
+          class="alert">
           <div *ngIf="addProductForm.get('valor').errors?.required" class="error">
             Valor é obrigatório.
           </div>
@@ -63,13 +69,15 @@
           </div>
         </span>
       </div>
-
-      <div class="col"></div>
-
-      <div class="form-group col">
+    </div>
+    <!--      <div class="col"></div>-->
+    <div class="row">
+      <div class="form-group col-6">
         <label for="descricao">Descrição:</label>
         <textarea class="form-control" formControlName="descricao" id="descricao" type="text"></textarea>
-        <span *ngIf="addProductForm.get('descricao').invalid && (addProductForm.get('descricao').dirty || addProductForm.get('descricao').touched)" class="alert">
+        <span
+          *ngIf="addProductForm.get('descricao').invalid && (addProductForm.get('descricao').dirty || addProductForm.get('descricao').touched)"
+          class="alert">
           <div *ngIf="addProductForm.get('descricao').errors?.required" class="error">
             Descrição é obrigatório.
           </div>
@@ -79,11 +87,14 @@
     </div>
   </fieldset>
 
-  <div class="col-6">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-      <button type="button" class="btn btn-primary me-md-1" (click)="onReset()">Limpar</button>
-      <button type="button" class="btn btn-primary me-md-1" (click)="onNew()">Novo</button>
-      <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="addProductForm.invalid">Incluir</button>
+  <div class="row row-cols-2">
+    <div class="col-6">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+        <button type="button" class="btn btn-primary me-md-1" (click)="onReset()">Limpar</button>
+        <button type="button" class="btn btn-primary me-md-1" (click)="onNew()">Novo</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="addProductForm.invalid">Incluir
+        </button>
+      </div>
     </div>
   </div>
 </form>
