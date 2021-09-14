@@ -17,28 +17,28 @@ import java.time.LocalDateTime;
 public class MovimentoManual {
 
     @Id
-    @Column(name = "DAT_MES")
+    @Column(name = "DAT_MES", columnDefinition = "numeric(2,0)")
     private Long datMes;
 
     @Id
-    @Column(name = "DAT_ANO")
+    @Column(name = "DAT_ANO", columnDefinition = "numeric(4,0)")
     private Long datAno;
 
     @Id
-    @Column(name = "NUM_LANCAMENTO")
+    @Column(name = "NUM_LANCAMENTO", columnDefinition = "numeric(18,0)")
     private Long numLancamento;
 
-    @Column(name = "DES_DESCRICAO")
+    @Column(name = "DES_DESCRICAO", length = 50)
     private String desDescricao;
 
-    @Column(name = "DAT_MOVIMENTO")
+    @Column(name = "DAT_MOVIMENTO", columnDefinition = "smalldatetime")
     @CreationTimestamp()
     private LocalDateTime datMovimento;
 
-    @Column(name = "COD_USUARIO")
+    @Column(name = "COD_USUARIO", length = 15)
     private String codUsuario = "TESTE";
 
-    @Column(name = "VAL_VALOR")
+    @Column(name = "VAL_VALOR", columnDefinition = "numeric(18,2)")
     private Double valValor;
 
     @ManyToOne()
