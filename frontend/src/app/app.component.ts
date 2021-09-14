@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SpringApiService} from "./spring-api.service";
+import {SpringApiService} from "./services/spring-api.service";
 import {Product} from "./models/product";
 import {ProdutoCosif} from "./models/produto-cosif";
 import {MovimentoManualRequest} from "./models/movimento-manual-request";
@@ -11,26 +11,25 @@ import {MovimentoManual} from "./models/movimento-manual";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'frontend';
+  title: string = 'Movimentos Manuais';
   products: Product[] = new Array<Product>();
   produtoCosifArray: ProdutoCosif[] = new Array<ProdutoCosif>();
-  movimentosManuais: MovimentoManual[] = new Array<MovimentoManual>();
+  movimentoManualArray: MovimentoManual[] = new Array<MovimentoManual>();
 
   constructor(private springApiService: SpringApiService) {
   }
 
   ngOnInit() {
-    this.springApiService.getProducts().subscribe(
-      response => {
-        this.products = response;
-        console.log(this.products);
-      }
-    );
+    this.springApiService.getProducts().subscribe({
+      next: (response: Product[]) => {
+      this.products = response;
+    }
+  });
   }
 
   getProdutoCosif(codigoProduto): void {
     this.springApiService.getProdutoCosif(codigoProduto).subscribe({
-      next: (response) => {
+      next: (response: ProdutoCosif[]) => {
         this.produtoCosifArray = response;
       }
     });
@@ -38,8 +37,8 @@ export class AppComponent implements OnInit{
 
   saveMovimentoManual(movimentoManualRequest: MovimentoManualRequest): void {
     this.springApiService.postMovimentoManual(movimentoManualRequest).subscribe({
-      next: (response) => {
-        this.movimentosManuais.push(response);
+      next: (response: MovimentoManual) => {
+        this.movimentoManualArray.push(response);
       }
     });
   }

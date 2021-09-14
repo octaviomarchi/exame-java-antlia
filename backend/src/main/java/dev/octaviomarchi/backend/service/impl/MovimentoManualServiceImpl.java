@@ -4,7 +4,6 @@ import dev.octaviomarchi.backend.converter.MovimentoManualConverter;
 import dev.octaviomarchi.backend.dtos.MovimentoManualRequestDTO;
 import dev.octaviomarchi.backend.dtos.MovimentoManualResponseDTO;
 import dev.octaviomarchi.backend.model.MovimentoManual;
-import dev.octaviomarchi.backend.model.ProdutoCosif;
 import dev.octaviomarchi.backend.repository.MovimentoManualRepository;
 import dev.octaviomarchi.backend.service.MovimentoManualService;
 import lombok.extern.log4j.Log4j2;
@@ -35,7 +34,7 @@ public class MovimentoManualServiceImpl implements MovimentoManualService {
 
         MovimentoManual movimentoManualSaved = movimentoManualRepository.save(movimentoManual);
 
-        MovimentoManualResponseDTO movimentoManualResponseDTO = movimentoManualConverter.movimentoManualToMovimentoRespostaDTO(movimentoManualSaved);
+        MovimentoManualResponseDTO movimentoManualResponseDTO = movimentoManualConverter.movimentoManualToMovimentoManualResponseDTO(movimentoManualSaved);
 
         return movimentoManualResponseDTO;
     }

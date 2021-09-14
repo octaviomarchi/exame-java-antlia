@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovimentoManualConverter {
 
-    public MovimentoManualResponseDTO movimentoManualToMovimentoRespostaDTO(MovimentoManual movimentoManual) {
+    public MovimentoManualResponseDTO movimentoManualToMovimentoManualResponseDTO(MovimentoManual movimentoManual) {
         MovimentoManualResponseDTO movimentoManualResponseDTO = new MovimentoManualResponseDTO();
         movimentoManualResponseDTO.setAno(movimentoManual.getDatAno());
         movimentoManualResponseDTO.setMes(movimentoManual.getDatMes());
