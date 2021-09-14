@@ -27,7 +27,6 @@ public class MovimentoManualRequestDTO {
     private String cosif;
 
     @NotNull
-    @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "Valor é numérico (com até 2 digitos decimais).")
     private Double valor;
 
     @NotNull
