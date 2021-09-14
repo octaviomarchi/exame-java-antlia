@@ -11,7 +11,7 @@ API REST para a inserção de movimentos manuais
 3. URL base: <http://localhost:8080>
 
 ## Documentação da API
-A documentação da API pode ser visulaizada nas seguintes URLs:
+A documentação da API pode ser visualizada nas seguintes URLs:
 - <http://localhost:8080/api-docs>
   - Aqui pode ser encontrado o arquivo OpenAPI do Projeto. (Caso queira ver o projeto Na UI, utilizar o link abaixo);
 - <http://localhost:8080/swagger-ui>
