@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+  <app-manual-movements-form
+    [products]="products"
+    (codigoProduto)="getProdutoCosif($event)"
+    [codigoCosifArray]="produtoCosifArray"
+    (submit)="saveMovimentoManual($event)"
+  ></app-manual-movements-form>
+  </div>
+
+  <div class="row">
+    <app-manual-movements-grid
+      *ngIf="movimentoManualArray.length > 0"
+      [movimentos]="movimentoManualArray"
+    ></app-manual-movements-grid>
+  </div>
+</div>
