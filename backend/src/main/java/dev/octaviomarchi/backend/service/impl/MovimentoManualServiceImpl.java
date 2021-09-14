@@ -1,6 +1,6 @@
 package dev.octaviomarchi.backend.service.impl;
 
-import dev.octaviomarchi.backend.converter.MovimentoManualConverter;
+import dev.octaviomarchi.backend.converter.MovimentoManualMapper;
 import dev.octaviomarchi.backend.dtos.MovimentoManualRequestDTO;
 import dev.octaviomarchi.backend.dtos.MovimentoManualResponseDTO;
 import dev.octaviomarchi.backend.model.MovimentoManual;
@@ -17,13 +17,11 @@ public class MovimentoManualServiceImpl implements MovimentoManualService {
     @Autowired
     MovimentoManualRepository movimentoManualRepository;
 
-    @Autowired
-    MovimentoManualConverter movimentoManualConverter;
-
     @Override
     public MovimentoManualResponseDTO salvarMovimentoManual(MovimentoManualRequestDTO movimentoManualRequestDTO) {
-        // converter aqui
-        MovimentoManual movimentoManual = movimentoManualConverter.movimentoManualRequestDTOToEntity(movimentoManualRequestDTO);
+
+        MovimentoManual movimentoManual = MovimentoManualMapper.INSTANCE
+                .movimentoManualRequestDTOToEntity(movimentoManualRequestDTO);
 
         Long numeroLancamentosMes = movimentoManualRepository.getNumeroLancamentosMes(
                 movimentoManual.getDatMes(),
@@ -34,7 +32,8 @@ public class MovimentoManualServiceImpl implements MovimentoManualService {
 
         MovimentoManual movimentoManualSaved = movimentoManualRepository.save(movimentoManual);
 
-        MovimentoManualResponseDTO movimentoManualResponseDTO = movimentoManualConverter.movimentoManualToMovimentoManualResponseDTO(movimentoManualSaved);
+        MovimentoManualResponseDTO movimentoManualResponseDTO = MovimentoManualMapper.INSTANCE
+                .movimentoManualToMovimentoManualResponseDTO(movimentoManualSaved);
 
         return movimentoManualResponseDTO;
     }

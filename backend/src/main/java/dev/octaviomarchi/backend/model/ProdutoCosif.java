@@ -16,13 +16,13 @@ import java.util.List;
 public class ProdutoCosif {
 
     @Id
-    @Column(name = "COD_COSIF")
+    @Column(name = "COD_COSIF", length = 11, columnDefinition = "char(11)")
     private String codCosif;
 
-    @Column(name = "COD_CLASSIFICACAO")
+    @Column(name = "COD_CLASSIFICACAO", length = 6, columnDefinition = "char(6)")
     private String codClassificacao;
 
-    @Column(name = "STA_STATUS")
+    @Column(name = "STA_STATUS", length = 1, columnDefinition = "char(1)")
     private String staStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
