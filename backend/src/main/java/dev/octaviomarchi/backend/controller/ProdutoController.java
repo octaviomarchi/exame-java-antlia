@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -33,7 +35,11 @@ public class ProdutoController {
     @GetMapping("/{codigoProduto}/cosif")
     @Operation(description = "Retorna todos os Cosif relacionados ao Produto")
     public List<ProdutoCosifDTO> getProdutoCosifListPorCodigoDoProduto(@PathVariable String codigoProduto) {
-        List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifService.getProdutoCosifListDoProduto(codigoProduto);
-        return produtoCosifDTOList;
+        try {
+            List<ProdutoCosifDTO> produtoCosifDTOList = produtoCosifService.getProdutoCosifListDoProduto(codigoProduto);
+            return produtoCosifDTOList;
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado", e);
+        }
     }
 }

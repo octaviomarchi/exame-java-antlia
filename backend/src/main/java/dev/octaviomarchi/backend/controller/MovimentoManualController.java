@@ -5,9 +5,13 @@ import dev.octaviomarchi.backend.dtos.MovimentoManualResponseDTO;
 import dev.octaviomarchi.backend.service.MovimentoManualService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
@@ -23,8 +27,13 @@ public class MovimentoManualController {
     public ResponseEntity<MovimentoManualResponseDTO> criarMovimentoManual(
             @Valid @RequestBody MovimentoManualRequestDTO movimentoManualRequestDTO
     ) {
-        return ResponseEntity
-                .created(null)
-                .body(movimentoManualService.salvarMovimentoManual(movimentoManualRequestDTO));
+        try {
+            MovimentoManualResponseDTO movimentoManualResponseDTO = movimentoManualService.salvarMovimentoManual(movimentoManualRequestDTO);
+            return ResponseEntity
+                    .created(null)
+                    .body(movimentoManualResponseDTO);
+        } catch (JpaObjectRetrievalFailureException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto Cosif não encontrado", e);
+        }
     }
 }
