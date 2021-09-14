@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/movimentos-manuais")
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -16,7 +18,11 @@ public class MovimentoManualController {
     MovimentoManualService movimentoManualService;
 
     @PostMapping()
-    public ResponseEntity<MovimentoManualResponseDTO> criarMovimentoManual(@RequestBody MovimentoManualRequestDTO movimentoManualRequestDTO) {
-        return ResponseEntity.created(null).body(movimentoManualService.salvarMovimentoManual(movimentoManualRequestDTO));
+    public ResponseEntity<MovimentoManualResponseDTO> criarMovimentoManual(
+            @Valid @RequestBody MovimentoManualRequestDTO movimentoManualRequestDTO
+    ) {
+        return ResponseEntity
+                .created(null)
+                .body(movimentoManualService.salvarMovimentoManual(movimentoManualRequestDTO));
     }
 }
